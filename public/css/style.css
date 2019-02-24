@@ -2,3 +2,31 @@ body {
 	background: cadetblue;
 	color: aliceblue;
 }
+
+header {
+	background: azure;
+	color: slategray;
+	margin: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+nav {
+	width: 30%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+nav > * {
+	color: slategray;
+}
+
+a:hover {
+	color: black;
+}
+
+main {
+	margin-left: 20px;
+}
