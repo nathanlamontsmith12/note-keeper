@@ -16,7 +16,9 @@ class ApplicationController < Sinatra::Base
 	set :public_dir, File.expand_path("../../public", __FILE__)
 
 	get '/' do |variable = nil|
-		"<h1> Boilerplate successful </h1>"
+		
+		erb :home
+
 	end
 
 

@@ -15,8 +15,10 @@ CREATE TABLE notes (
 	content TEXT
 );
 
+-- RELATIONS -- user has many notes; (each) note belongs to (one) user 
+-- through table (aka intermediate table) relating notes to users 
 CREATE TABLE user_notes (
-	user_id INTEGER,
-	note_id INTEGER
+	user_id INTEGER REFERENCES users(id),
+	note_id INTEGER REFERENCES notes(id)
 );
 
