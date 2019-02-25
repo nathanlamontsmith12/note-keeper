@@ -19,14 +19,20 @@ nav {
 	align-items: center;
 }
 
-nav > * {
-	color: slategray;
+a {
+	color: black;
+	text-decoration: none;
 }
 
 a:hover {
 	color: black;
+	text-decoration: underline;
 }
 
 main {
 	margin-left: 20px;
+}
+
+nav > * {
+	color: slategray;
 }
