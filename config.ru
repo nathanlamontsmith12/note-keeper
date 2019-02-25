@@ -8,6 +8,7 @@ require './controllers/UserController'
 # models 
 require './models/NoteModel'
 require './models/UserModel'
+require './models/UserNotesModel'
 
 
 map ('/') {
