@@ -1,0 +1,17 @@
+<% if @user and @note %>
+
+<h3><%=@user.username%>'s note</h3>
+
+<h4><%=@note.content%></h4>
+
+<br />
+<br />
+<a href="/notes/<%=@user.id%>/<%=@note.id%>/edit"> EDIT</a>
+<br />
+<form action="/notes/<%=@user.id%>/<%=@note.id%>" method="POST">
+	<input type="hidden" name="_method" value="DELETE">
+	<button>DELETE</button>
+</form>
+<% else %>
+	<h3> Uh oh... there seems to be a problem! Return <a href="/">HOME</a></h3>
+<% end %>

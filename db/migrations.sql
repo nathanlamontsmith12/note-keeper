@@ -18,6 +18,7 @@ CREATE TABLE notes (
 -- RELATIONS -- user has many notes; (each) note belongs to (one) user 
 -- through table (aka intermediate table) relating notes to users 
 CREATE TABLE user_notes (
+	id SERIAL PRIMARY KEY,
 	user_id INTEGER REFERENCES users(id),
 	note_id INTEGER REFERENCES notes(id)
 );

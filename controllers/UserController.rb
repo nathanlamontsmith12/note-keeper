@@ -16,7 +16,7 @@ class UserController < ApplicationController
 
 		user.save 
 
-		redirect "/"
+		redirect "/notes"
 
 	end
 

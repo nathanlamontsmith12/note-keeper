@@ -5,14 +5,6 @@ class NoteController < ApplicationController
 
 		@all_users = User.all.sort  
 
-		pp @all_users
-
-		puts "@all_users.length: "
-		puts @all_users.length 
-
-		puts @all_users[0].username 
-
-
 		erb :landing 
 
 	end
@@ -32,7 +24,7 @@ class NoteController < ApplicationController
 		# get all notes_ids for this user, only: 
 		user_notes_intermediate.each do |pair| 
 
-			if pair[:user_id] == params[:user_id] 
+			if pair[:user_id].to_s == params[:user_id] 
 				pushee = pair[:note_id]
 				user_notes_ids.push(pushee)
 			end
@@ -70,21 +62,43 @@ class NoteController < ApplicationController
 	# create 
 	post "/:user_id" do
 
+		note = Note.new 
 
+		note.content = params[:content]
+
+		note.save 
+
+		user_note = UserNotes.new 
+
+		user_note.user_id = params[:user_id]
+
+		user_note.note_id = note[:id]
+
+		user_note.save 
+
+		redirect "/notes/#{params[:user_id]}"
 
 	end
 
 
-	# view 
+	# show 
 	get "/:user_id/:note_id" do 
 
-		erb :view
+		@user = User.find params[:user_id]
+
+		@note = Note.find params[:note_id]
+
+		erb :show
 
 	end
 
 
 	# edit 
 	get "/:user_id/:note_id/edit" do 
+
+		@user = User.find params[:user_id]
+
+		@note = Note.find params[:note_id]
 
 		erb :edit
 
@@ -94,14 +108,48 @@ class NoteController < ApplicationController
 	# update 
 	put "/:user_id/:note_id" do 
 
+		note = Note.find params[:note_id]
 
-		redirect "/notes"
+		note.content = params[:content]
+
+		note.save 
+
+		redirect "/notes/#{params[:user_id]}"
 
 	end
 
 
 	# destroy 
 	delete "/:user_id/:note_id" do 
+
+		puts "============================="
+		puts "============================="
+		puts "============================="
+		puts "============================="
+		puts "DESTROY ROUTE STARTING"
+
+		user_note = UserNotes.find_by note_id: params[:note_id]
+
+		note = Note.find params[:note_id]
+
+		puts "============================="
+		puts "============================="
+		puts "============================="
+		puts "user_note: "
+		pp user_note 
+
+		puts "note: "
+		pp note 
+		puts "============================="
+		puts "============================="
+		puts "============================="
+
+
+		user_note.destroy 
+
+		note.destroy 
+
+		redirect "/notes/#{params[:user_id]}"
 
 	end
 

@@ -9,10 +9,10 @@
 <ul>
 
 	<% if @user_notes and @user_notes.length > 0 %>
-		<% for item in @user_notes %>
-			<li>  <%= item %>  </li>
+		<% @user_notes.each do |note| %>
+			<li>  <%= note.content %>  </li>
 			<br />
-			<a href= "/notes/<%=@user.id%>/<%=item.id%>"> VIEW/EDIT </a>
+			<a href= "/notes/<%=@user.id%>/<%=note.id%>"> VIEW </a>
 			<br />
 			<br />
 		<% end %>		

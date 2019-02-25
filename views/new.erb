@@ -2,11 +2,11 @@
 <%if @user %>
 <h3>Add Note for <%=@user.username%> </h3>
 <br />
-<form>
+<form action="/notes/<%=@user.id%>" method="POST">
 	<input name="content" value="" placeholder="Enter note...">
 	<button>Add Note</button>
 </form>
 
 <% else %>
-	<h3> Uh oh... seems to be a problem! Return <a href="/">HOME</a></h3>
+	<h3> Uh oh... there seems to be a problem! Return <a href="/">HOME</a></h3>
 <% end %>
